@@ -1,0 +1,106 @@
+%define _requires_exceptions pkgconfig\(.*\)
+
+Summary: GNOME On-screen Keyboard 
+Name: gok
+Version: 1.2.3
+Release: %mkrel 2
+License: LGPL
+Group: Accessibility
+URL: http://www.gok.ca/
+Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+# (fc) 0.11.12-1mdk use www-browser as web browser (Fedora)
+Patch0:	gok-0.10.2-launcher.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	XFree86-devel
+BuildRequires:	at-spi-devel >= 1.5.0
+BuildRequires:	gtk-doc
+BuildRequires:	libgnomeui2-devel
+BuildRequires:	libwnck-devel >= 2.13
+BuildRequires:	libusb-devel
+BuildRequires:	perl-XML-Parser
+BuildRequires:	scrollkeeper
+BuildRequires:  XFree86-static-devel
+BuildRequires:	libgnomespeech-devel
+BuildRequires:	libglade2.0-devel
+BuildRequires:	desktop-file-utils
+Requires: scrollkeeper
+Requires: %{_lib}gail-gnome
+Requires(post): scrollkeeper
+Requires(postun): scrollkeeper
+
+%description 
+The GNOME On-screen Keyboard (GOK) is a dynamic on-screen keyboard for
+UNIX and UNIX-like operating systems.  It features Direct Selection,
+Dwell Selection, Automatic Scanning and Inverse Scanning access
+methods and includes word completion.
+
+%prep
+%setup -q
+%patch0 -p1 -b .launcher
+
+%build
+
+%configure2_5x --enable-gtk-doc --enable-libusb-input
+
+#parallel build is broken
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
+
+%find_lang %{name} --with-gnome
+
+mkdir -p $RPM_BUILD_ROOT%{_menudir}
+cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
+?package(%{name}):\
+	needs="X11" \
+	section="More Applications/Accessibility" \
+	title="On-Screen Keyboard" \
+	longtitle="GNOME Onscreen Keyboard" \
+	command="%{_bindir}/gok" \
+	icon="gok.png" \
+	startup_notify="true" xdg="true"
+EOF
+desktop-file-install --vendor="" \
+  --remove-category="Application" \
+  --add-category="Utility" \
+  --add-category="Accessibility" \
+  --add-category="X-MandrivaLinux-MoreApplications-Accessibility" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+
+
+#remove unpackaged files
+rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper
+
+%post
+%update_scrollkeeper
+%post_install_gconf_schemas gok
+%{update_menus}
+
+%preun
+%preun_uninstall_gconf_schemas gok
+
+%postun
+%clean_scrollkeeper
+%{clean_menus}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files -f %{name}.lang
+%defattr(-,root,root,-)
+%doc %{_datadir}/gtk-doc/html/*
+%{_sysconfdir}/gconf/schemas/*
+%{_bindir}/*
+%{_libdir}/bonobo/servers/*
+%{_datadir}/applications/*
+%{_datadir}/gok
+%dir %{_datadir}/omf/*
+%{_datadir}/omf/*/*-C.omf
+%{_libdir}/pkgconfig/*
+%{_menudir}/*
+%{_datadir}/pixmaps/gok.png
+
+
