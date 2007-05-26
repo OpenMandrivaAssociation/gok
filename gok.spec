@@ -2,8 +2,8 @@
 
 Summary: GNOME On-screen Keyboard 
 Name: gok
-Version: 1.2.3
-Release: %mkrel 2
+Version: 1.2.5
+Release: %mkrel 1
 License: LGPL
 Group: Accessibility
 URL: http://www.gok.ca/
@@ -78,6 +78,7 @@ rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper
 %update_scrollkeeper
 %post_install_gconf_schemas gok
 %{update_menus}
+%update_icon_cache hicolor
 
 %preun
 %preun_uninstall_gconf_schemas gok
@@ -85,6 +86,7 @@ rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper
 %postun
 %clean_scrollkeeper
 %{clean_menus}
+%clean_icon_cache hicolor
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -97,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/bonobo/servers/*
 %{_datadir}/applications/*
 %{_datadir}/gok
+%_datadir/icons/hicolor/*/apps/*.*
 %dir %{_datadir}/omf/*
 %{_datadir}/omf/*/*-C.omf
 %{_libdir}/pkgconfig/*
