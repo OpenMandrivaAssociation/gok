@@ -2,7 +2,7 @@
 
 Summary: GNOME On-screen Keyboard 
 Name: gok
-Version: 1.3.2
+Version: 1.3.3
 Release: %mkrel 1
 License: LGPL
 Group: Accessibility
@@ -10,6 +10,7 @@ URL: http://www.gok.ca/
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 # (fc) 0.11.12-1mdk use www-browser as web browser (Fedora)
 Patch0:	gok-0.10.2-launcher.patch
+Patch1: gok-1.3.3-desktopentry.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	XFree86-devel
 BuildRequires:	at-spi-devel >= 1.5.0
@@ -37,6 +38,7 @@ methods and includes word completion.
 %prep
 %setup -q
 %patch0 -p1 -b .launcher
+%patch1 -p1
 
 %build
 
