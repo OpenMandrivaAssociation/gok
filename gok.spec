@@ -11,6 +11,7 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz
 # (fc) 0.11.12-1mdk use www-browser as web browser (Fedora)
 Patch0:	gok-0.10.2-launcher.patch
 Patch1: gok-1.3.3-desktopentry.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	X11-devel
 BuildRequires:	at-spi-devel >= 1.5.0
 BuildRequires:	gtk-doc
