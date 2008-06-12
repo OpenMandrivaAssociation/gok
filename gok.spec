@@ -56,19 +56,23 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 #remove unpackaged files
 rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper
 
+%if %mdkversion < 200900
 %post
 %update_scrollkeeper
 %post_install_gconf_schemas gok
 %{update_menus}
 %update_icon_cache hicolor
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas gok
 
+%if %mdkversion < 200900
 %postun
 %clean_scrollkeeper
 %{clean_menus}
 %clean_icon_cache hicolor
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
