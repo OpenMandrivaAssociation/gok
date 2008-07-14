@@ -18,7 +18,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	libwnck-devel >= 2.13
 BuildRequires:	libusb-devel
-BuildRequires:	perl-XML-Parser
+BuildRequires:	intltool
 BuildRequires:	scrollkeeper
 BuildRequires:  XFree86-static-devel
 BuildRequires:	libgnomespeech-devel
