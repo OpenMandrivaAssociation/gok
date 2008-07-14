@@ -2,8 +2,8 @@
 
 Summary: GNOME On-screen Keyboard 
 Name: gok
-Version: 1.3.7
-Release: %mkrel 2
+Version: 1.4.0
+Release: %mkrel 1
 License: LGPLv2+
 Group: Accessibility
 URL: http://www.gok.ca/
