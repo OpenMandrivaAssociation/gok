@@ -22,6 +22,7 @@ BuildRequires:	scrollkeeper
 BuildRequires:  XFree86-static-devel
 BuildRequires:	libgnomespeech-devel
 BuildRequires:	libglade2.0-devel
+BuildRequires:	libcanberra-devel
 Requires: scrollkeeper
 Requires: %{_lib}gail-gnome
 Requires(post): scrollkeeper
