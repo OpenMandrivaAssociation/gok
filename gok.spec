@@ -2,7 +2,7 @@
 
 Summary: GNOME On-screen Keyboard 
 Name: gok
-Version: 2.26.0
+Version: 2.27.1
 Release: %mkrel 1
 License: LGPLv2+
 Group: Accessibility
@@ -88,3 +88,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/omf/*/*-C.omf
 %{_libdir}/pkgconfig/*
 %{_datadir}/pixmaps/gok.png
+%_datadir/sounds/freedesktop/stereo/goksound*
