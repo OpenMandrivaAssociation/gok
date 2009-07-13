@@ -2,7 +2,7 @@
 
 Summary: GNOME On-screen Keyboard 
 Name: gok
-Version: 2.27.3
+Version: 2.27.4
 Release: %mkrel 1
 License: LGPLv2+
 Group: Accessibility
@@ -10,6 +10,8 @@ URL: http://www.gok.ca/
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 # (fc) 0.11.12-1mdk use www-browser as web browser (Fedora)
 Patch0:	gok-0.10.2-launcher.patch
+# http://bugzilla.gnome.org/show_bug.cgi?id=588458
+Patch1: gok-2.27.4-fix-build.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	X11-devel
 BuildRequires:	at-spi-devel >= 1.5.0
@@ -37,13 +39,14 @@ methods and includes word completion.
 %prep
 %setup -q
 %patch0 -p1 -b .launcher
+%patch1 -p1
 
 %build
 
 %configure2_5x --enable-gtk-doc --enable-libusb-input
 
 #parallel build is broken
-make
+make LIBS=-lm
 
 %install
 rm -rf $RPM_BUILD_ROOT
