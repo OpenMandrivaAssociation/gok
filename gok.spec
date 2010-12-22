@@ -56,7 +56,7 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 %find_lang %{name} --with-gnome
 
 #remove unpackaged files
-rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper
+rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper $RPM_BUILD_ROOT%_libdir/pkgconfig
 
 %if %mdkversion < 200900
 %post
@@ -90,6 +90,5 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/icons/hicolor/*/apps/*.*
 %dir %{_datadir}/omf/*
 %{_datadir}/omf/*/*-C.omf
-%{_libdir}/pkgconfig/*
 %{_datadir}/pixmaps/gok.png
 %_datadir/sounds/freedesktop/stereo/goksound*
