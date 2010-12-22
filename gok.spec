@@ -1,9 +1,7 @@
-%define _requires_exceptions pkgconfig\(.*\)
-
 Summary: GNOME On-screen Keyboard 
 Name: gok
 Version: 2.30.1
-Release: %mkrel 1
+Release: %mkrel 2
 License: LGPLv2+
 Group: Accessibility
 URL: http://www.gok.ca/
@@ -12,18 +10,21 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz
 Patch0:	gok-0.10.2-launcher.patch
 Patch1: gok-2.28.0-fix-linking.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	X11-devel
-BuildRequires:	at-spi-devel >= 1.5.0
-BuildRequires:	gtk-doc
-BuildRequires:	libgnomeui2-devel
-BuildRequires:	libwnck-devel >= 2.13
-BuildRequires:	libusb-devel
-BuildRequires:	intltool
-BuildRequires:	scrollkeeper
-BuildRequires:  XFree86-static-devel
-BuildRequires:	libgnomespeech-devel
-BuildRequires:	libglade2.0-devel
+BuildRequires:	libORBit2-devel
+BuildRequires:	libx11-devel
+BuildRequires:	libxi-devel
+BuildRequires:	atk-devel
 BuildRequires:	libcanberra-gtk-devel
+BuildRequires:	libGConf2-devel
+BuildRequires:	at-spi-devel
+BuildRequires:	dbus-glib-devel
+BuildRequires:	gtk+2-devel
+BuildRequires:	gnome-speech-devel
+BuildRequires:	libwnck-devel
+BuildRequires:	libxml2-devel
+BuildRequires:	usb0.1-devel
+BuildRequires:	gtk-doc
+BuildRequires:	intltool
 BuildRequires:	gnome-common
 Requires: scrollkeeper
 Requires: %{_lib}gail-gnome
