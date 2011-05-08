@@ -15,7 +15,7 @@ BuildRequires:	libx11-devel
 BuildRequires:	libxi-devel
 BuildRequires:	atk-devel
 BuildRequires:	libcanberra-gtk-devel
-BuildRequires:	libGConf2-devel
+BuildRequires:	libGConf2-devel GCOnf2
 BuildRequires:	at-spi-devel
 BuildRequires:	dbus-glib-devel
 BuildRequires:	gtk+2-devel
