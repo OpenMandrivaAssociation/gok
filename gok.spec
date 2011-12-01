@@ -49,14 +49,14 @@ autoreconf -fi
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
 %find_lang %{name} --with-gnome
 
 #remove unpackaged files
-rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper $RPM_BUILD_ROOT%_libdir/pkgconfig
+rm -rf %{buildroot}/var/lib/scrollkeeper %{buildroot}%_libdir/pkgconfig
 
 %if %mdkversion < 200900
 %post
@@ -77,7 +77,7 @@ rm -rf $RPM_BUILD_ROOT/var/lib/scrollkeeper $RPM_BUILD_ROOT%_libdir/pkgconfig
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
