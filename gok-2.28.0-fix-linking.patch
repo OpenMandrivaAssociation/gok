@@ -1,0 +1,12 @@
+diff -p -up gok-2.28.0/gok/Makefile.am~ gok-2.28.0/gok/Makefile.am
+--- gok-2.28.0/gok/Makefile.am~	2009-09-21 18:19:53.000000000 +0200
++++ gok-2.28.0/gok/Makefile.am	2009-09-21 20:12:41.000000000 +0200
+@@ -27,7 +27,7 @@ INCLUDES = \
+ 
+ LDADD = $(GOK_LIBS)\
+ 	$(X_LIBS) \
+-	@LT_VERSION_INFO@
++	@LT_VERSION_INFO@ -lm
+ 
+ gok_LDFLAGS = -export-dynamic
+ 
