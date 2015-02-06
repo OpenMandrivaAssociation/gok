@@ -1,7 +1,7 @@
 Summary: GNOME On-screen Keyboard 
 Name: gok
 Version: 2.30.1
-Release: 4
+Release: 5
 License: LGPLv2+
 Group: Accessibility
 URL: http://www.gok.ca/
